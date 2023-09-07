@@ -1,4 +1,4 @@
-from search_engines import Google, Bing
+from search_engines_kit import Google, Bing
 import requests
 from requests.auth import HTTPProxyAuth
 
