@@ -26,7 +26,7 @@ class HttpClient(object):
             req = self.session.get(page, timeout=self.timeout)
             self.session.headers['Referer'] = page
         except requests.exceptions.RequestException as e:
-            print(str(e))
+            #print(str(e))
             return self.response(http=0, html=e.__doc__)
         return self.response(http=req.status_code, html=req.text)
     
