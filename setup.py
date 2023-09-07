@@ -12,7 +12,7 @@ with open('requirements.txt') as f:
     requirements = f.readlines()
 
 setup(
-    name="search_engines",
+    name="search_engines_kit",
     version='{{VERSION_PLACEHOLDER}}',
     description="Search Engines Scraper",
     url = "https://github.com/Juanchobanano/Search-Engines-Scraper",
