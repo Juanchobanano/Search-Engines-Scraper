@@ -26,3 +26,4 @@ search_engines_dict = {
     'brave': Brave,
     'torch': Torch 
 }
+#
