@@ -9,7 +9,6 @@ from . import utils
 from . import output as out
 from . import config as cfg
 
-#
 class SearchEngine(object):
     '''The base class for all Search Engines.'''
     def __init__(self, proxy=cfg.PROXY, timeout=cfg.TIMEOUT, username: str or None = None, password: str or None = None, language: str or None = None):
