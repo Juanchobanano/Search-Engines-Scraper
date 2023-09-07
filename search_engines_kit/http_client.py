@@ -24,7 +24,7 @@ class HttpClient(object):
         page = self._quote(page)
         try:
             print(self.session.proxies)
-            print(self.session.auth)#
+            print(self.session.auth)##
             req = self.session.get(page, timeout=self.timeout)
             self.session.headers['Referer'] = page
         except requests.exceptions.RequestException as e:
