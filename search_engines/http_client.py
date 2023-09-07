@@ -1,4 +1,5 @@
 import requests
+from requests.auth import HTTPProxyAuth, HTTPBasicAuth
 from collections import namedtuple
 
 from .config import TIMEOUT, PROXY, USER_AGENT
@@ -19,11 +20,13 @@ class HttpClient(object):
 
     def get(self, page):
         '''Submits a HTTP GET request.'''
+        #print("Getting...")
         page = self._quote(page)
         try:
             req = self.session.get(page, timeout=self.timeout)
             self.session.headers['Referer'] = page
         except requests.exceptions.RequestException as e:
+            print(str(e))
             return self.response(http=0, html=e.__doc__)
         return self.response(http=req.status_code, html=req.text)
     
@@ -45,14 +48,17 @@ class HttpClient(object):
     
     def _set_proxy(self, proxy):
         '''Returns HTTP or SOCKS proxies dictionary.'''
+        #if proxy:
+        #    if not utl.is_url(proxy):
+        #        raise ValueError('Invalid proxy format!')
         if proxy:
-            if not utl.is_url(proxy):
-                raise ValueError('Invalid proxy format!')
-            proxy = {'http':proxy, 'https':proxy}
-        return proxy
+            proxy = {'http': f"http://{proxy}", 'https': f"https://{proxy}"}
+            return proxy
+        return None
 
     def _set_auth(self, username: str, password: str): 
         '''Returns HTTP Proxy Auth'''
+        #print(username, password)
         if username and password: 
             return HTTPProxyAuth(username, password)
         return None
