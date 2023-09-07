@@ -21,7 +21,7 @@ class HttpClient(object):
     def get(self, page):
         '''Submits a HTTP GET request.'''
         #print("Getting...")
-        page = self._quote(page)
+        page = self._quote(page) #
         try:
             req = self.session.get(page, timeout=self.timeout)
             self.session.headers['Referer'] = page
