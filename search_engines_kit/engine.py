@@ -164,6 +164,9 @@ class SearchEngine(object):
                 if not self._is_ok(response):
                     break
                 tags = BeautifulSoup(response.html, "html.parser")
+                #print("Save HTML...")
+                #with open("tags.html", "w") as f:
+                #    f.write(str(tags))
                 items = self._filter_results(tags)
                 self._collect_results(items)
                 

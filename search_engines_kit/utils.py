@@ -18,7 +18,7 @@ def is_url(link):
     '''Checks if link is URL'''
     parts = requests.utils.urlparse(link)
     return bool(parts.scheme and parts.netloc)
-
+#
 def domain(url):
     '''Returns domain form URL'''
     host = requests.utils.urlparse(url).netloc

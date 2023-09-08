@@ -2,9 +2,9 @@
 import argparse
 
 try:
-    from search_engines.engines import search_engines_dict
-    from search_engines.multiple_search_engines import MultipleSearchEngines, AllSearchEngines
-    from search_engines import config
+    from search_engines_kit.engines import search_engines_dict
+    from search_engines_kit.multiple_search_engines import MultipleSearchEngines, AllSearchEngines
+    from search_engines_kit import config
 except ImportError as e:
     msg = '"{}"\nPlease install `search_engines` to resolve this error.'
     raise ImportError(msg.format(str(e)))

@@ -17,7 +17,7 @@ class Google(SearchEngine):
         '''Returns the appropriate CSS selector.'''
         selectors = {
             'url': 'a[href]', 
-            'title': 'a', 
+            'title': 'a > h3', 
             'text': 'div[data-sncf="1"]',
             'links': 'div#search div.g', 
             'next': 'a[href][aria-label="Page {page}"]'
