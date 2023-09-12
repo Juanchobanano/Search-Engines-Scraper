@@ -4,8 +4,8 @@ from ..config import PROXY, TIMEOUT
 
 class Brave(SearchEngine):
     '''Searches brave.com'''
-    def __init__(self, proxy=PROXY, timeout=TIMEOUT):
-        super(Brave, self).__init__(proxy, timeout)
+    def __init__(self, proxy=PROXY, timeout=TIMEOUT, username: str or None = None, password: str or None = None, language: str or None = None):
+        super(Brave, self).__init__(proxy, timeout, username, password, language)
         self._base_url = 'https://search.brave.com'
     
     def _selectors(self, element):

@@ -9,7 +9,7 @@ PYTHON_VERSION = version_info.major
 SEARCH_ENGINE_RESULTS_PAGES = 20
 
 ## HTTP request timeout 
-TIMEOUT = 10#
+TIMEOUT = 10
 
 ## Default User-Agent string 
 USER_AGENT = 'search_engines/0.5 Repo: https://github.com/tasos-py/Search-Engines-Scraper'

@@ -153,7 +153,7 @@ class SearchEngine(object):
         :param pages: int Optional, the maximum number of results pages to search  
         :returns SearchResults object
         '''
-        out.console('Searching {}'.format(self.__class__.__name__))
+        #out.console('Searching {}'.format(self.__class__.__name__))
         self._query = utils.decode_bytes(query)
         self.results = SearchResults()
         request = self._first_page()

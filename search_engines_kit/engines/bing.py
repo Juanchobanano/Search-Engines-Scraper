@@ -4,10 +4,14 @@ from ..config import PROXY, TIMEOUT, FAKE_USER_AGENT
 
 class Bing(SearchEngine):
     '''Searches bing.com'''
-    def __init__(self, proxy=PROXY, timeout=TIMEOUT):
-        super(Bing, self).__init__(proxy, timeout)
+    def __init__(self, proxy=PROXY, timeout=TIMEOUT, username: str or None = None, password: str or None = None, language: str or None = None):
+        super(Bing, self).__init__(proxy, timeout, username, password, language)
         self._base_url = u'https://www.bing.com'
         self.set_headers({'User-Agent':FAKE_USER_AGENT})
+        self.__language_dict = {
+            "EN": "en",
+            "ES": "es"
+        }
 
     def _selectors(self, element):
         '''Returns the appropriate CSS selector.'''
@@ -23,9 +27,10 @@ class Bing(SearchEngine):
     def _first_page(self):
         '''Returns the initial page and query.'''
         self._get_page(self._base_url)
-        url = u'{}/search?q={}&search=&form=QBLH'.format(self._base_url, self._query)
+        language = self.__language_dict[self._language] if self._language in self.__language_dict else "en"
+        url = u'{}/search?q={}&search=&form=QBLH&setlang={}'.format(self._base_url, self._query, language)
         return {'url':url, 'data':None}
-    
+
     def _next_page(self, tags):
         '''Returns the next page URL and post data (if any)'''
         selector = self._selectors('next')

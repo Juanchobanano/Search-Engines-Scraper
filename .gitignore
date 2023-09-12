@@ -3,5 +3,5 @@ __pycache__/
 *.html
 *.json
 *.egg-info
-./extra
+extra
 env

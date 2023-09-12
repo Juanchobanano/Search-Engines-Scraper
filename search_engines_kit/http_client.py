@@ -24,10 +24,12 @@ class HttpClient(object):
         page = self._quote(page) #
         try:
             req = self.session.get(page, timeout=self.timeout)
+            #print(req.status_code) #, req.raw._connection.sock.getsockname())
             self.session.headers['Referer'] = page
         except requests.exceptions.RequestException as e:
             #print(str(e))
             return self.response(http=0, html=e.__doc__)
+        
         return self.response(http=req.status_code, html=req.text)
     
     def post(self, page, data):
