@@ -14,3 +14,4 @@ results = engine.search("MSI GT77 Titan 12UGS-008 17.3 / Nvidia GeForce RTX 3070
 
 for result in results.titles():
     print(result)
+#
