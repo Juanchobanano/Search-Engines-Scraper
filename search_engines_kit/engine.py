@@ -186,6 +186,7 @@ class SearchEngine(object):
             except KeyboardInterrupt:
                 break
         #out.console('', end='')
+        #
         return self.results, status
     
     def output(self, output=out.PRINT, path=None):
