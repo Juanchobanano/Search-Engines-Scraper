@@ -118,9 +118,11 @@ class SearchEngine(object):
         self.is_banned = response.http in [403, 429, 503]
         
         if response.http == 200:
-            return True
-        msg = ('HTTP ' + str(response.http)) if response.http else response.html
-        out.console(msg, level=out.Level.error)
+            return True, 200
+        if response.http in [403, 429, 503]:
+            return False, response.http
+        #msg = ('HTTP ' + str(response.http)) if response.http else response.html
+        #out.console(msg, level=out.Level.error)
         return False
     
     def set_headers(self, headers):
@@ -157,11 +159,14 @@ class SearchEngine(object):
         self._query = utils.decode_bytes(query)
         self.results = SearchResults()
         request = self._first_page()
+        status = None
 
         for page in range(1, pages + 1):
             try:
                 response = self._get_page(request['url'], request['data'])
-                if not self._is_ok(response):
+                is_ok, status = self._is_ok(response)
+                #self.results["status"] = status
+                if not is_ok:
                     break
                 tags = BeautifulSoup(response.html, "html.parser")
                 #print("Save HTML...")
@@ -180,8 +185,8 @@ class SearchEngine(object):
                     sleep(random_uniform(*self._delay))
             except KeyboardInterrupt:
                 break
-        out.console('', end='')
-        return self.results
+        #out.console('', end='')
+        return self.results, status
     
     def output(self, output=out.PRINT, path=None):
         '''Prints search results and/or creates report files.
