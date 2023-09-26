@@ -2,9 +2,9 @@ from search_engines_kit import Google, Bing, Yahoo, Brave
 import requests
 from requests.auth import HTTPProxyAuth
 
-proxy = "brd.superproxy.io:22225"
-username = "brd-customer-hl_93b5fa1a-zone-data_center"
-password = "ask3gh8zga95"
+proxy = None 
+username = None
+password = None
 
 engine = Yahoo(proxy = proxy, username = username, password = password, language = "ES")
 #
